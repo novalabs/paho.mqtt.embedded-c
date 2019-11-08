@@ -1015,19 +1015,10 @@ exit:
     return rc;
 }
 
-
-template<class Network, class Timer, int a, int b, int c>
-int MQTT::Client<Network, Timer, a, b, c>::publish(const char* topicName, void* payload, size_t payloadlen, enum QoS qos, bool retained)
-{
-    unsigned short id = 0;  // dummy - not used for anything
-    return publish(topicName, payload, payloadlen, id, qos, retained);
-}
-
-
 template<class Network, class Timer, int a, int b, int c>
 int MQTT::Client<Network, Timer, a, b, c>::publish(const char* topicName, Message& message)
 {
-    return publish(topicName, message.payload, message.payloadlen, message.qos, message.retained);
+    return publish(topicName, message.payload, message.payloadlen, message.id, message.qos, message.retained);
 }
 
 
